@@ -13,7 +13,7 @@ class Api::V1::RoomsController < Api::V1::GraphitiController
     room = RoomResource.build(params)
 
     if room.save
-      render jsonapi: room, status: 201
+      render jsonapi: room, status: :created
     else
       render jsonapi_errors: room
     end
@@ -33,7 +33,7 @@ class Api::V1::RoomsController < Api::V1::GraphitiController
     room = RoomResource.find(params)
 
     if room.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: room
     end

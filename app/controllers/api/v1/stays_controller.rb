@@ -13,7 +13,7 @@ class Api::V1::StaysController < Api::V1::GraphitiController
     stay = StayResource.build(params)
 
     if stay.save
-      render jsonapi: stay, status: 201
+      render jsonapi: stay, status: :created
     else
       render jsonapi_errors: stay
     end
@@ -33,7 +33,7 @@ class Api::V1::StaysController < Api::V1::GraphitiController
     stay = StayResource.find(params)
 
     if stay.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: stay
     end

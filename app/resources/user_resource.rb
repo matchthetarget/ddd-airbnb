@@ -31,5 +31,4 @@ class UserResource < ApplicationResource
 
   many_to_many :liked_rooms,
                resource: RoomResource
-
 end

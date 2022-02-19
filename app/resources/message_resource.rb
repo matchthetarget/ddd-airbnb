@@ -15,5 +15,4 @@ class MessageResource < ApplicationResource
              resource: UserResource
 
   # Indirect associations
-
 end

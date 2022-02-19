@@ -13,7 +13,7 @@ class Api::V1::MessagesController < Api::V1::GraphitiController
     message = MessageResource.build(params)
 
     if message.save
-      render jsonapi: message, status: 201
+      render jsonapi: message, status: :created
     else
       render jsonapi_errors: message
     end
@@ -33,7 +33,7 @@ class Api::V1::MessagesController < Api::V1::GraphitiController
     message = MessageResource.find(params)
 
     if message.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: message
     end

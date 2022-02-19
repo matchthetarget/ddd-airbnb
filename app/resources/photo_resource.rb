@@ -10,5 +10,4 @@ class PhotoResource < ApplicationResource
   belongs_to :room
 
   # Indirect associations
-
 end

@@ -16,5 +16,4 @@ class StayResource < ApplicationResource
              resource: UserResource
 
   # Indirect associations
-
 end

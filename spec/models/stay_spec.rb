@@ -1,24 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Stay, type: :model do
-  
-    describe "Direct Associations" do
-
+  describe "Direct Associations" do
     it { should belong_to(:room) }
 
     it { should belong_to(:guest) }
+  end
 
-    end
+  describe "InDirect Associations" do
+  end
 
-    describe "InDirect Associations" do
-
-    end
-
-    describe "Validations" do
-
+  describe "Validations" do
     it { should validate_presence_of(:check_in) }
 
     it { should validate_presence_of(:check_out) }
-
-    end
+  end
 end

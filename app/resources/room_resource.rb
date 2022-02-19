@@ -27,5 +27,4 @@ class RoomResource < ApplicationResource
 
   many_to_many :fans,
                resource: UserResource
-
 end
