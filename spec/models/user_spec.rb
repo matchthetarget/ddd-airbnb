@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:recieved_messages) }
+
     it { should have_many(:sent_messages) }
 
     it { should have_many(:stays) }
