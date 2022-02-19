@@ -16,7 +16,7 @@
 
     <%= f.label :guest_id %>
     <!-- Input for guest_id start -->
-    <%= f.number_field :guest_id, class: guest_class, placeholder: "Enter guest" %>
+    <%= f.collection_select :guest_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for guest_id end -->
     <% if guest_was_invalid %>
       <% stay.errors.full_messages_for(:guest).each do |message| %>

@@ -7,7 +7,7 @@
     <%= f.label :guest_id %>
 
     <!-- Input for guest_id start -->
-    <%= f.text_field :guest_id, class: "form-control" %>
+    <%= f.collection_select :guest_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for guest_id end -->
   </div>
   <!-- Label and input for guest_id end -->
