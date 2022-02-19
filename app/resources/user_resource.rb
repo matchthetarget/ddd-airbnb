@@ -26,6 +26,9 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :stayed_rooms,
+               resource: RoomResource
+
   many_to_many :liked_rooms,
                resource: RoomResource
 

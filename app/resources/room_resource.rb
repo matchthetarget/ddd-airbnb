@@ -22,6 +22,9 @@ class RoomResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :guests,
+               resource: UserResource
+
   many_to_many :fans,
                resource: UserResource
 
