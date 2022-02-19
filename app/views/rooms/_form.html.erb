@@ -16,7 +16,7 @@
 
     <%= f.label :host_id %>
     <!-- Input for host_id start -->
-    <%= f.number_field :host_id, class: host_class, placeholder: "Enter host" %>
+    <%= f.collection_select :host_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for host_id end -->
     <% if host_was_invalid %>
       <% room.errors.full_messages_for(:host).each do |message| %>
