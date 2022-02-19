@@ -24,7 +24,12 @@ class StaysController < ApplicationController
     @stay = Stay.new(stay_params)
 
     if @stay.save
-      redirect_to @stay, notice: 'Stay was successfully created.'
+      message = 'Stay was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @stay, notice: message
+      end
     else
       render :new
     end

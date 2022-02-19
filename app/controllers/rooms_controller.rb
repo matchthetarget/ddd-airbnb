@@ -8,6 +8,9 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1
   def show
+    @like = Like.new
+    @photo = Photo.new
+    @stay = Stay.new
   end
 
   # GET /rooms/new
@@ -24,7 +27,12 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to @room, notice: 'Room was successfully created.'
+      message = 'Room was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @room, notice: message
+      end
     else
       render :new
     end

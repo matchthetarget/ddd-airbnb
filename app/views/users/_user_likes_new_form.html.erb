@@ -1,0 +1,22 @@
+<!-- Form like start -->
+<%= form_with(model: @like, local: true) do |f| %>
+<!-- Form like end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for room_id start -->
+  <div class="form-group">
+    <%= f.label :room_id %>
+
+    <!-- Input for room_id start -->
+    <%= f.text_field :room_id, class: "form-control" %>
+    <!-- Input for room_id end -->
+  </div>
+  <!-- Label and input for room_id end -->
+
+  <%= f.submit "Create like", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
