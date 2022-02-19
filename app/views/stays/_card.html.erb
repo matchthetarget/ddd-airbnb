@@ -1,0 +1,61 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Stay #<%= stay.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Guest</dt>
+      <!-- Display guest_id start -->
+      <dd><%= stay.guest_id %></dd>
+      <!-- Display guest_id end -->
+
+      <dt>Room</dt>
+      <!-- Display room_id start -->
+      <dd><%= stay.room_id %></dd>
+      <!-- Display room_id end -->
+
+      <dt>Check in</dt>
+      <!-- Display check_in start -->
+      <dd><%= stay.check_in %></dd>
+      <!-- Display check_in end -->
+
+      <dt>Check out</dt>
+      <!-- Display check_out start -->
+      <dd><%= stay.check_out %></dd>
+      <!-- Display check_out end -->
+
+      <dt>Approved</dt>
+      <!-- Display approved start -->
+      <dd><%= stay.approved %></dd>
+      <!-- Display approved end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back stay, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link stay start -->
+      <div class="col">
+        <%= link_to edit_stay_url(stay), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link stay end -->
+
+      <!-- Delete link stay start -->
+      <div class="col">
+        <%= link_to stay, method: :delete, data: { confirm: "Do you really want to delete this stay?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link stay end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(stay.updated_at) %> ago
+  </div>
+</div>
