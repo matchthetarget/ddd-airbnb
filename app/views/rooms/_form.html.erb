@@ -1,0 +1,161 @@
+<% was_validated = room.errors.any? %>
+
+<%= form_with(model: room, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for host_id start -->
+  <div class="form-group">
+    <% host_class = "form-control" %>
+    <% host_was_invalid = room.errors.include?(:host) %>
+
+    <% if was_validated %>
+      <% if host_was_invalid %>
+        <% host_class << " is-invalid" %>
+      <% else %>
+        <% host_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :host_id %>
+    <!-- Input for host_id start -->
+    <%= f.number_field :host_id, class: host_class, placeholder: "Enter host" %>
+    <!-- Input for host_id end -->
+    <% if host_was_invalid %>
+      <% room.errors.full_messages_for(:host).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for host_id end -->
+  <!-- Label and input for number_of_bedrooms start -->
+  <div class="form-group">
+    <% number_of_bedroom_class = "form-control" %>
+    <% number_of_bedroom_was_invalid = room.errors.include?(:number_of_bedroom) %>
+
+    <% if was_validated %>
+      <% if number_of_bedroom_was_invalid %>
+        <% number_of_bedroom_class << " is-invalid" %>
+      <% else %>
+        <% number_of_bedroom_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :number_of_bedrooms %>
+    <!-- Input for number_of_bedrooms start -->
+    <%= f.number_field :number_of_bedrooms, class: number_of_bedroom_class, placeholder: "Enter number of bedroom" %>
+    <!-- Input for number_of_bedrooms end -->
+    <% if number_of_bedroom_was_invalid %>
+      <% room.errors.full_messages_for(:number_of_bedroom).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for number_of_bedrooms end -->
+  <!-- Label and input for name start -->
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = room.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+    <!-- Input for name start -->
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <!-- Input for name end -->
+    <% if name_was_invalid %>
+      <% room.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for name end -->
+  <!-- Label and input for description start -->
+  <div class="form-group">
+    <% description_class = "form-control" %>
+    <% description_was_invalid = room.errors.include?(:description) %>
+
+    <% if was_validated %>
+      <% if description_was_invalid %>
+        <% description_class << " is-invalid" %>
+      <% else %>
+        <% description_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :description %>
+    <!-- Input for description start -->
+    <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
+    <!-- Input for description end -->
+    <% if description_was_invalid %>
+      <% room.errors.full_messages_for(:description).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for description end -->
+  <!-- Label and input for cost_per_night start -->
+  <div class="form-group">
+    <% cost_per_night_class = "form-control" %>
+    <% cost_per_night_was_invalid = room.errors.include?(:cost_per_night) %>
+
+    <% if was_validated %>
+      <% if cost_per_night_was_invalid %>
+        <% cost_per_night_class << " is-invalid" %>
+      <% else %>
+        <% cost_per_night_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :cost_per_night %>
+    <!-- Input for cost_per_night start -->
+    <%= f.text_field :cost_per_night, class: cost_per_night_class, placeholder: "Enter cost per night" %>
+    <!-- Input for cost_per_night end -->
+    <% if cost_per_night_was_invalid %>
+      <% room.errors.full_messages_for(:cost_per_night).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for cost_per_night end -->
+  <!-- Label and input for number_of_bathrooms start -->
+  <div class="form-group">
+    <% number_of_bathroom_class = "form-control" %>
+    <% number_of_bathroom_was_invalid = room.errors.include?(:number_of_bathroom) %>
+
+    <% if was_validated %>
+      <% if number_of_bathroom_was_invalid %>
+        <% number_of_bathroom_class << " is-invalid" %>
+      <% else %>
+        <% number_of_bathroom_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :number_of_bathrooms %>
+    <!-- Input for number_of_bathrooms start -->
+    <%= f.text_field :number_of_bathrooms, class: number_of_bathroom_class, placeholder: "Enter number of bathroom" %>
+    <!-- Input for number_of_bathrooms end -->
+    <% if number_of_bathroom_was_invalid %>
+      <% room.errors.full_messages_for(:number_of_bathroom).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for number_of_bathrooms end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

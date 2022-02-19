@@ -1,0 +1,66 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Room #<%= room.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Host</dt>
+      <!-- Display host_id start -->
+      <dd><%= room.host_id %></dd>
+      <!-- Display host_id end -->
+
+      <dt>Number of bedrooms</dt>
+      <!-- Display number_of_bedrooms start -->
+      <dd><%= room.number_of_bedrooms %></dd>
+      <!-- Display number_of_bedrooms end -->
+
+      <dt>Name</dt>
+      <!-- Display name start -->
+      <dd><%= room.name %></dd>
+      <!-- Display name end -->
+
+      <dt>Description</dt>
+      <!-- Display description start -->
+      <dd><%= room.description %></dd>
+      <!-- Display description end -->
+
+      <dt>Cost per night</dt>
+      <!-- Display cost_per_night start -->
+      <dd><%= room.cost_per_night %></dd>
+      <!-- Display cost_per_night end -->
+
+      <dt>Number of bathrooms</dt>
+      <!-- Display number_of_bathrooms start -->
+      <dd><%= room.number_of_bathrooms %></dd>
+      <!-- Display number_of_bathrooms end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back room, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link room start -->
+      <div class="col">
+        <%= link_to edit_room_url(room), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link room end -->
+
+      <!-- Delete link room start -->
+      <div class="col">
+        <%= link_to room, method: :delete, data: { confirm: "Do you really want to delete this room?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link room end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(room.updated_at) %> ago
+  </div>
+</div>
