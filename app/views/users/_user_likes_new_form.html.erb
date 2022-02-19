@@ -13,7 +13,7 @@
     <%= f.label :room_id %>
 
     <!-- Input for room_id start -->
-    <%= f.text_field :room_id, class: "form-control" %>
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for room_id end -->
   </div>
   <!-- Label and input for room_id end -->
