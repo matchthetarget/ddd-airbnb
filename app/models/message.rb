@@ -5,6 +5,8 @@ class Message < ApplicationRecord
 
   # Validations
 
+  validates :body, :presence => true
+
   # Scopes
 
   def to_s
