@@ -42,8 +42,14 @@ class StaysController < ApplicationController
   # DELETE /stays/1
   def destroy
     @stay.destroy
-    redirect_to stays_url, notice: 'Stay was successfully destroyed.'
+    message = "Stay was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to stays_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

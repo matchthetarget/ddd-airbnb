@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Stays
+
+    <a data-toggle="collapse" href="#room_stays_new_form">
+      Add stay
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @room.stays.each do |stay| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to stay, stay %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to stay, method: :delete, data: { confirm: "Do you really want to delete this stay" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="room_stays_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
