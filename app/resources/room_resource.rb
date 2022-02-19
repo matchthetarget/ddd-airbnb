@@ -8,6 +8,7 @@ class RoomResource < ApplicationResource
   attribute :description, :string
   attribute :cost_per_night, :float
   attribute :number_of_bathrooms, :string
+  attribute :address, :string
 
   # Direct associations
 

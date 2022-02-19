@@ -112,5 +112,27 @@
       <% end %>
     <% end %>
   </div>
+  <div class="form-group">
+    <% address_class = "form-control" %>
+    <% address_was_invalid = room.errors.include?(:address) %>
+
+    <% if was_validated %>
+      <% if address_was_invalid %>
+        <% address_class << " is-invalid" %>
+      <% else %>
+        <% address_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address, class: address_class, placeholder: "Enter address" %>
+    <% if address_was_invalid %>
+      <% room.errors.full_messages_for(:address).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

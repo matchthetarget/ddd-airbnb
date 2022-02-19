@@ -1,6 +1,6 @@
 ActiveAdmin.register Room do
   permit_params :host_id, :number_of_bedrooms, :name, :description,
-                :cost_per_night, :number_of_bathrooms
+                :cost_per_night, :number_of_bathrooms, :address
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
