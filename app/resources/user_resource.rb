@@ -8,6 +8,9 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :stays,
+             foreign_key: :guest_id
+
   has_many   :rooms,
              foreign_key: :host_id
 

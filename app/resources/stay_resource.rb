@@ -10,6 +10,9 @@ class StayResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :guest,
+             resource: UserResource
+
   # Indirect associations
 
 end
