@@ -22,4 +22,7 @@ class RoomResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :fans,
+               resource: UserResource
+
 end
