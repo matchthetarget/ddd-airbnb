@@ -5,6 +5,8 @@ class Room < ApplicationRecord
 
   # Validations
 
+  validates :name, :presence => true
+
   validates :number_of_bedrooms, :presence => true
 
   # Scopes

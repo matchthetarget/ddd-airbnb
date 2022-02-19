@@ -12,6 +12,8 @@ RSpec.describe Room, type: :model do
 
     describe "Validations" do
 
+    it { should validate_presence_of(:name) }
+
     it { should validate_presence_of(:number_of_bedrooms) }
 
     end
