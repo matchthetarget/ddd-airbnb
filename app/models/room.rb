@@ -1,6 +1,9 @@
 class Room < ApplicationRecord
   # Direct associations
 
+  has_many   :photos,
+             :dependent => :destroy
+
   has_many   :stays,
              :dependent => :destroy
 
