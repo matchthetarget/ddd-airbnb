@@ -4,29 +4,24 @@ class RoomsController < ApplicationController
 
   before_action :set_room, only: %i[show edit update destroy]
 
-  # GET /rooms
   def index
     @q = Room.ransack(params[:q])
     @rooms = @q.result(distinct: true).includes(:host, :stays, :photos,
                                                 :likes, :fans, :guests).page(params[:page]).per(10)
   end
 
-  # GET /rooms/1
   def show
     @like = Like.new
     @photo = Photo.new
     @stay = Stay.new
   end
 
-  # GET /rooms/new
   def new
     @room = Room.new
   end
 
-  # GET /rooms/1/edit
   def edit; end
 
-  # POST /rooms
   def create
     @room = Room.new(room_params)
 
@@ -42,7 +37,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rooms/1
   def update
     if @room.update(room_params)
       redirect_to @room, notice: "Room was successfully updated."
@@ -51,7 +45,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  # DELETE /rooms/1
   def destroy
     @room.destroy
     message = "Room was successfully deleted."
@@ -72,12 +65,10 @@ class RoomsController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_room
     @room = Room.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def room_params
     params.require(:room).permit(:host_id, :number_of_bedrooms, :name,
                                  :description, :cost_per_night, :number_of_bathrooms)
