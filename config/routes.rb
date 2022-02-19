@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "rooms#index"
   resources :likes
   resources :messages
   resources :photos
