@@ -24,6 +24,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :stayed_rooms,
+             :through => :stays,
+             :source => :room
+
   has_many   :liked_rooms,
              :through => :likes,
              :source => :room
