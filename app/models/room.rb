@@ -1,6 +1,9 @@
 class Room < ApplicationRecord
   # Direct associations
 
+  has_many   :stays,
+             :dependent => :destroy
+
   belongs_to :host,
              :class_name => "User"
 

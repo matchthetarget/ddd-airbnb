@@ -4,6 +4,8 @@ RSpec.describe Stay, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:room) }
+
     it { should belong_to(:guest) }
 
     end

@@ -1,6 +1,8 @@
 class Stay < ApplicationRecord
   # Direct associations
 
+  belongs_to :room
+
   belongs_to :guest,
              :class_name => "User"
 
