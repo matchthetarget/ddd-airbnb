@@ -44,16 +44,20 @@
 
       <!-- Edit link room start -->
       <div class="col">
-        <%= link_to edit_room_url(room), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @room.host %>
+          <%= link_to edit_room_url(room), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link room end -->
 
       <!-- Delete link room start -->
       <div class="col">
-        <%= link_to room, method: :delete, data: { confirm: "Do you really want to delete this room?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @room.host %>
+          <%= link_to room, method: :delete, data: { confirm: "Do you really want to delete this room?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link room end -->

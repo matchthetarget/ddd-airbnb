@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :current_user_must_be_room_host, only: [:edit, :update, :destroy] 
+
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
@@ -60,6 +62,14 @@ class RoomsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_room_host
+    set_room
+    unless current_user == @room.host
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
