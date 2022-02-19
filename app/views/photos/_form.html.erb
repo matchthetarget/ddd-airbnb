@@ -16,7 +16,7 @@
 
     <%= f.label :room_id %>
     <!-- Input for room_id start -->
-    <%= f.number_field :room_id, class: room_class, placeholder: "Enter room" %>
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for room_id end -->
     <% if room_was_invalid %>
       <% photo.errors.full_messages_for(:room).each do |message| %>
