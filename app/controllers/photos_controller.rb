@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 
   # GET /photos
   def index
-    @photos = Photo.all
+    @photos = Photo.page(params[:page]).per(10)
   end
 
   # GET /photos/1

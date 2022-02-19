@@ -3,7 +3,7 @@ class StaysController < ApplicationController
 
   # GET /stays
   def index
-    @stays = Stay.all
+    @stays = Stay.page(params[:page]).per(10)
   end
 
   # GET /stays/1
