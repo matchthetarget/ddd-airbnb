@@ -5,6 +5,8 @@ class Stay < ApplicationRecord
 
   # Validations
 
+  validates :check_out, :presence => true
+
   # Scopes
 
   def to_s
