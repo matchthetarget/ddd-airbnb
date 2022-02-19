@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Room</dt>
       <!-- Display room_id start -->
-      <dd><%= photo.room_id %></dd>
+      <dd>
+        <% if @photo.room.present? %>
+          <%= link_to photo.room, photo.room %>
+        <% end %>
+      </dd>
       <!-- Display room_id end -->
 
       <dt>Url</dt>

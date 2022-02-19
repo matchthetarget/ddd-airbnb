@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>Guest</dt>
       <!-- Display guest_id start -->
-      <dd><%= stay.guest_id %></dd>
+      <dd>
+        <% if @stay.guest.present? %>
+          <%= link_to stay.guest, stay.guest %>
+        <% end %>
+      </dd>
       <!-- Display guest_id end -->
 
       <dt>Room</dt>
       <!-- Display room_id start -->
-      <dd><%= stay.room_id %></dd>
+      <dd>
+        <% if @stay.room.present? %>
+          <%= link_to stay.room, stay.room %>
+        <% end %>
+      </dd>
       <!-- Display room_id end -->
 
       <dt>Check in</dt>

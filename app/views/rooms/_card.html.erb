@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Host</dt>
       <!-- Display host_id start -->
-      <dd><%= room.host_id %></dd>
+      <dd>
+        <% if @room.host.present? %>
+          <%= link_to room.host, room.host %>
+        <% end %>
+      </dd>
       <!-- Display host_id end -->
 
       <dt>Number of bedrooms</dt>
