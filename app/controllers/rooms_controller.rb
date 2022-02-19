@@ -8,6 +8,10 @@ class RoomsController < ApplicationController
     @q = Room.ransack(params[:q])
     @rooms = @q.result(distinct: true).includes(:host, :stays, :photos,
                                                 :likes, :fans, :guests).page(params[:page]).per(10)
+    @location_hash = Gmaps4rails.build_markers(@rooms.where.not(address_latitude: nil)) do |room, marker|
+      marker.lat room.address_latitude
+      marker.lng room.address_longitude
+    end
   end
 
   def show
@@ -71,6 +75,6 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:host_id, :number_of_bedrooms, :name,
-                                 :description, :cost_per_night, :number_of_bathrooms)
+                                 :description, :cost_per_night, :number_of_bathrooms, :address)
   end
 end

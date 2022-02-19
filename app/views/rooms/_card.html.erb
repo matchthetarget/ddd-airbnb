@@ -27,6 +27,13 @@
       <dt>Number of bathrooms</dt>
       <dd><%= room.number_of_bathrooms %></dd>
 
+      <dt>Address</dt>
+      <dd>
+        <div>
+          <%= render partial: "rooms/one_photo_map" %>
+        </div>
+      </dd>
+
     </dl>
 
     <div class="row">
