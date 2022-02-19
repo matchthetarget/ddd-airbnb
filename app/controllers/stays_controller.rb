@@ -3,7 +3,8 @@ class StaysController < ApplicationController
 
   # GET /stays
   def index
-    @stays = Stay.page(params[:page]).per(10)
+    @q = Stay.ransack(params[:q])
+    @stays = @q.result(:distinct => true).includes(:guest, :room).page(params[:page]).per(10)
   end
 
   # GET /stays/1

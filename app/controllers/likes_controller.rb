@@ -3,7 +3,8 @@ class LikesController < ApplicationController
 
   # GET /likes
   def index
-    @likes = Like.page(params[:page]).per(10)
+    @q = Like.ransack(params[:q])
+    @likes = @q.result(:distinct => true).includes(:user, :room).page(params[:page]).per(10)
   end
 
   # GET /likes/1

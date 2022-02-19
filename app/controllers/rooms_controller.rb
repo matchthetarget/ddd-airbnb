@@ -5,7 +5,8 @@ class RoomsController < ApplicationController
 
   # GET /rooms
   def index
-    @rooms = Room.page(params[:page]).per(10)
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(:distinct => true).includes(:host, :stays, :photos, :likes, :fans, :guests).page(params[:page]).per(10)
   end
 
   # GET /rooms/1
