@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :likes,
+             :dependent => :destroy
+
   has_many   :recieved_messages,
              :class_name => "Message",
              :foreign_key => "recipient_id",
