@@ -11,6 +11,8 @@ class RoomResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :stays
+
   belongs_to :host,
              resource: UserResource
 

@@ -10,6 +10,8 @@ class StayResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :room
+
   belongs_to :guest,
              resource: UserResource
 
