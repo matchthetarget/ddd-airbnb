@@ -1,7 +1,6 @@
 <% was_validated = like.errors.any? %>
 
 <%= form_with(model: like, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
   <div class="form-group">
     <% user_class = "form-control" %>
     <% user_was_invalid = like.errors.include?(:user) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :user_id %>
-    <!-- Input for user_id start -->
     <%= f.collection_select :user_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for user_id end -->
     <% if user_was_invalid %>
       <% like.errors.full_messages_for(:user).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for room_id start -->
   <div class="form-group">
     <% room_class = "form-control" %>
     <% room_was_invalid = like.errors.include?(:room) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :room_id %>
-    <!-- Input for room_id start -->
     <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for room_id end -->
     <% if room_was_invalid %>
       <% like.errors.full_messages_for(:room).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,6 +45,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for room_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

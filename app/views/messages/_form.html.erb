@@ -1,7 +1,6 @@
 <% was_validated = message.errors.any? %>
 
 <%= form_with(model: message, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for sender_id start -->
   <div class="form-group">
     <% sender_class = "form-control" %>
     <% sender_was_invalid = message.errors.include?(:sender) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :sender_id %>
-    <!-- Input for sender_id start -->
     <%= f.collection_select :sender_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for sender_id end -->
     <% if sender_was_invalid %>
       <% message.errors.full_messages_for(:sender).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for sender_id end -->
-  <!-- Label and input for recipient_id start -->
   <div class="form-group">
     <% recipient_class = "form-control" %>
     <% recipient_was_invalid = message.errors.include?(:recipient) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :recipient_id %>
-    <!-- Input for recipient_id start -->
     <%= f.collection_select :recipient_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for recipient_id end -->
     <% if recipient_was_invalid %>
       <% message.errors.full_messages_for(:recipient).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for recipient_id end -->
-  <!-- Label and input for body start -->
   <div class="form-group">
     <% body_class = "form-control" %>
     <% body_was_invalid = message.errors.include?(:body) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :body %>
-    <!-- Input for body start -->
     <%= f.text_area :body, class: body_class, placeholder: "Enter body" %>
-    <!-- Input for body end -->
     <% if body_was_invalid %>
       <% message.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,6 +67,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for body end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

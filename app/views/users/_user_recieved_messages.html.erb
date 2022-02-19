@@ -10,18 +10,14 @@
   <ul class="list-group list-group-flush">
     <% @user.recieved_messages.each do |message| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to message, message %>
-        <!-- Show link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="user_recieved_messages_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "users/user_recieved_messages_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

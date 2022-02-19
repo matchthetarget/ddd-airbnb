@@ -10,24 +10,18 @@
   <ul class="list-group list-group-flush">
     <% @room.stays.each do |stay| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to stay, stay %>
-        <!-- Show link end -->
 
-        <!-- Delete link start -->
         <%= link_to stay, method: :delete, data: { confirm: "Do you really want to delete this stay" } do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
-        <!-- Delete link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="room_stays_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "rooms/room_stays_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

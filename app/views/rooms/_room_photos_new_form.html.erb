@@ -1,22 +1,12 @@
-<!-- Form photo start -->
 <%= form_with(model: @photo, local: true) do |f| %>
-<!-- Form photo end -->
 
-  <!-- Label and input for room_id start -->
-  <!-- Input for room_id start -->
   <%= f.hidden_field :room_id, value: @room.id %>
-  <!-- Input for room_id end -->
-  <!-- Label and input for room_id end -->
 
-  <!-- Label and input for url start -->
   <div class="form-group">
     <%= f.label :url %>
 
-    <!-- Input for url start -->
     <%= f.file_field :url, class: "form-control" %>
-    <!-- Input for url end -->
   </div>
-  <!-- Label and input for url end -->
 
   <%= f.submit "Create photo", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

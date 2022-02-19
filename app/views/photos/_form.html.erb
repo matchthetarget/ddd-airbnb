@@ -1,7 +1,6 @@
 <% was_validated = photo.errors.any? %>
 
 <%= form_with(model: photo, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for room_id start -->
   <div class="form-group">
     <% room_class = "form-control" %>
     <% room_was_invalid = photo.errors.include?(:room) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :room_id %>
-    <!-- Input for room_id start -->
     <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for room_id end -->
     <% if room_was_invalid %>
       <% photo.errors.full_messages_for(:room).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for room_id end -->
-  <!-- Label and input for url start -->
   <div class="form-group">
     <% url_class = "form-control" %>
     <% url_was_invalid = photo.errors.include?(:url) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :url %>
-    <!-- Input for url start -->
     <%= f.file_field :url, class: "form-control" %>
-    <!-- Input for url end -->
     <% if url_was_invalid %>
       <% photo.errors.full_messages_for(:url).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,6 +45,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for url end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

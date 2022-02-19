@@ -1,62 +1,36 @@
-<!-- Form room start -->
 <%= form_with(model: @room, local: true) do |f| %>
-<!-- Form room end -->
 
-  <!-- Label and input for host_id start -->
-  <!-- Input for host_id start -->
   <%= f.hidden_field :host_id, value: @user.id %>
-  <!-- Input for host_id end -->
-  <!-- Label and input for host_id end -->
 
-  <!-- Label and input for number_of_bedrooms start -->
   <div class="form-group">
     <%= f.label :number_of_bedrooms %>
 
-    <!-- Input for number_of_bedrooms start -->
     <%= f.text_field :number_of_bedrooms, class: "form-control" %>
-    <!-- Input for number_of_bedrooms end -->
   </div>
-  <!-- Label and input for number_of_bedrooms end -->
 
-  <!-- Label and input for name start -->
   <div class="form-group">
     <%= f.label :name %>
 
-    <!-- Input for name start -->
     <%= f.text_field :name, class: "form-control" %>
-    <!-- Input for name end -->
   </div>
-  <!-- Label and input for name end -->
 
-  <!-- Label and input for description start -->
   <div class="form-group">
     <%= f.label :description %>
 
-    <!-- Input for description start -->
     <%= f.text_field :description, class: "form-control" %>
-    <!-- Input for description end -->
   </div>
-  <!-- Label and input for description end -->
 
-  <!-- Label and input for cost_per_night start -->
   <div class="form-group">
     <%= f.label :cost_per_night %>
 
-    <!-- Input for cost_per_night start -->
     <%= f.text_field :cost_per_night, class: "form-control" %>
-    <!-- Input for cost_per_night end -->
   </div>
-  <!-- Label and input for cost_per_night end -->
 
-  <!-- Label and input for number_of_bathrooms start -->
   <div class="form-group">
     <%= f.label :number_of_bathrooms %>
 
-    <!-- Input for number_of_bathrooms start -->
     <%= f.text_field :number_of_bathrooms, class: "form-control" %>
-    <!-- Input for number_of_bathrooms end -->
   </div>
-  <!-- Label and input for number_of_bathrooms end -->
 
   <%= f.submit "Create room", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

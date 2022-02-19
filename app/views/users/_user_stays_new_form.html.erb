@@ -1,51 +1,29 @@
-<!-- Form stay start -->
 <%= form_with(model: @stay, local: true) do |f| %>
-<!-- Form stay end -->
 
-  <!-- Label and input for guest_id start -->
-  <!-- Input for guest_id start -->
   <%= f.hidden_field :guest_id, value: @user.id %>
-  <!-- Input for guest_id end -->
-  <!-- Label and input for guest_id end -->
 
-  <!-- Label and input for room_id start -->
   <div class="form-group">
     <%= f.label :room_id %>
 
-    <!-- Input for room_id start -->
     <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for room_id end -->
   </div>
-  <!-- Label and input for room_id end -->
 
-  <!-- Label and input for check_in start -->
   <div class="form-group">
     <%= f.label :check_in %>
 
-    <!-- Input for check_in start -->
     <%= f.date_select :check_in, class: "form-control" %>
-    <!-- Input for check_in end -->
   </div>
-  <!-- Label and input for check_in end -->
 
-  <!-- Label and input for check_out start -->
   <div class="form-group">
     <%= f.label :check_out %>
 
-    <!-- Input for check_out start -->
     <%= f.date_select :check_out, class: "form-control" %>
-    <!-- Input for check_out end -->
   </div>
-  <!-- Label and input for check_out end -->
 
-  <!-- Label and input for approved start -->
   <div class="form-check">
-    <!-- Input for approved start -->
     <%= f.check_box :approved, class: "form-check-input" %>
-    <!-- Input for approved end -->
     <%= f.label :approved, class: "form-check-label" %>
   </div>
-  <!-- Label and input for approved end -->
 
   <%= f.submit "Create stay", class: "btn btn-block btn-outline-secondary" %>
 <% end %>
