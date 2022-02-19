@@ -42,7 +42,7 @@
 
     <%= f.label :url %>
     <!-- Input for url start -->
-    <%= f.text_field :url, class: url_class, placeholder: "Enter url" %>
+    <%= f.file_field :url, class: "form-control" %>
     <!-- Input for url end -->
     <% if url_was_invalid %>
       <% photo.errors.full_messages_for(:url).each do |message| %>

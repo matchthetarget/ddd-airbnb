@@ -12,7 +12,9 @@
 
       <dt>Url</dt>
       <!-- Display url start -->
-      <dd><%= photo.url %></dd>
+      <dd>
+        <%= cl_image_tag @photo.url, class: "img-fluid" %>
+      </dd>
       <!-- Display url end -->
 
     </dl>
