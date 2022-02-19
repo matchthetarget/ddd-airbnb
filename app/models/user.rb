@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :stays,
+             :foreign_key => "guest_id",
+             :dependent => :destroy
+
   has_many   :rooms,
              :foreign_key => "host_id",
              :dependent => :destroy

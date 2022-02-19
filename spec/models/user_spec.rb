@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:stays) }
+
     it { should have_many(:rooms) }
 
     end
