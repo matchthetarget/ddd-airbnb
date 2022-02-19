@@ -18,6 +18,8 @@ RSpec.describe User, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:liked_rooms) }
+
     end
 
     describe "Validations" do

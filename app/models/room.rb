@@ -15,6 +15,10 @@ class Room < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :fans,
+             :through => :likes,
+             :source => :user
+
   # Validations
 
   validates :name, :presence => true

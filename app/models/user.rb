@@ -24,6 +24,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :liked_rooms,
+             :through => :likes,
+             :source => :room
+
   # Validations
 
   validates :name, :presence => true
