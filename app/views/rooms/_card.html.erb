@@ -1,0 +1,58 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Room #<%= room.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Host</dt>
+      <dd>
+        <% if @room.host.present? %>
+          <%= link_to room.host, room.host %>
+        <% end %>
+      </dd>
+
+      <dt>Number of bedrooms</dt>
+      <dd><%= room.number_of_bedrooms %></dd>
+
+      <dt>Name</dt>
+      <dd><%= room.name %></dd>
+
+      <dt>Description</dt>
+      <dd><%= room.description %></dd>
+
+      <dt>Cost per night</dt>
+      <dd><%= room.cost_per_night %></dd>
+
+      <dt>Number of bathrooms</dt>
+      <dd><%= room.number_of_bathrooms %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back room, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <% if current_user == @room.host %>
+          <%= link_to edit_room_url(room), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <% if current_user == @room.host %>
+          <%= link_to room, method: :delete, data: { confirm: "Do you really want to delete this room?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(room.updated_at) %> ago
+  </div>
+</div>

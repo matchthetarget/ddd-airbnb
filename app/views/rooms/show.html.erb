@@ -1,0 +1,35 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @room, partial: "card", as: :room %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "rooms/room_stays" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "rooms/room_photos" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "rooms/room_likes" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "rooms/room_fans" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "rooms/room_guests" %>
+  </div>
+</div>

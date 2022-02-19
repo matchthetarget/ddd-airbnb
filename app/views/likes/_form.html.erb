@@ -1,0 +1,49 @@
+<% was_validated = like.errors.any? %>
+
+<%= form_with(model: like, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <div class="form-group">
+    <% user_class = "form-control" %>
+    <% user_was_invalid = like.errors.include?(:user) %>
+
+    <% if was_validated %>
+      <% if user_was_invalid %>
+        <% user_class << " is-invalid" %>
+      <% else %>
+        <% user_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :user_id %>
+    <%= f.collection_select :user_id, User.all, :id, :to_s, {}, class: "form-control" %>
+    <% if user_was_invalid %>
+      <% like.errors.full_messages_for(:user).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% room_class = "form-control" %>
+    <% room_was_invalid = like.errors.include?(:room) %>
+
+    <% if was_validated %>
+      <% if room_was_invalid %>
+        <% room_class << " is-invalid" %>
+      <% else %>
+        <% room_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :room_id %>
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+    <% if room_was_invalid %>
+      <% like.errors.full_messages_for(:room).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

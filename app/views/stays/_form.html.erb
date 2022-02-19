@@ -1,0 +1,116 @@
+<% was_validated = stay.errors.any? %>
+
+<%= form_with(model: stay, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <div class="form-group">
+    <% guest_class = "form-control" %>
+    <% guest_was_invalid = stay.errors.include?(:guest) %>
+
+    <% if was_validated %>
+      <% if guest_was_invalid %>
+        <% guest_class << " is-invalid" %>
+      <% else %>
+        <% guest_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :guest_id %>
+    <%= f.collection_select :guest_id, User.all, :id, :to_s, {}, class: "form-control" %>
+    <% if guest_was_invalid %>
+      <% stay.errors.full_messages_for(:guest).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% room_class = "form-control" %>
+    <% room_was_invalid = stay.errors.include?(:room) %>
+
+    <% if was_validated %>
+      <% if room_was_invalid %>
+        <% room_class << " is-invalid" %>
+      <% else %>
+        <% room_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :room_id %>
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+    <% if room_was_invalid %>
+      <% stay.errors.full_messages_for(:room).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% check_in_class = "form-control" %>
+    <% check_in_was_invalid = stay.errors.include?(:check_in) %>
+
+    <% if was_validated %>
+      <% if check_in_was_invalid %>
+        <% check_in_class << " is-invalid" %>
+      <% else %>
+        <% check_in_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :check_in %>
+    <%= f.date_select :check_in, class: check_in_class, placeholder: "Enter check in" %>
+    <% if check_in_was_invalid %>
+      <% stay.errors.full_messages_for(:check_in).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% check_out_class = "form-control" %>
+    <% check_out_was_invalid = stay.errors.include?(:check_out) %>
+
+    <% if was_validated %>
+      <% if check_out_was_invalid %>
+        <% check_out_class << " is-invalid" %>
+      <% else %>
+        <% check_out_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :check_out %>
+    <%= f.date_select :check_out, class: check_out_class, placeholder: "Enter check out" %>
+    <% if check_out_was_invalid %>
+      <% stay.errors.full_messages_for(:check_out).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-check">
+    <% approved_class = "form-check-input" %>
+    <% approved_was_invalid = stay.errors.include?(:approved) %>
+
+    <% if was_validated %>
+      <% if approved_was_invalid %>
+        <% approved_class << " is-invalid" %>
+      <% else %>
+        <% approved_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :approved, class: "form-check-label" do %>
+      <%= f.check_box :approved, class: approved_class %> Approved
+    <% end %>
+    <% if approved_was_invalid %>
+      <% stay.errors.full_messages_for(:approved).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
