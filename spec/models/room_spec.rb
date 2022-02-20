@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe Room, type: :model do
   describe "Direct Associations" do
+    it { should have_many(:messages) }
+
     it { should have_many(:likes) }
 
     it { should have_many(:photos) }

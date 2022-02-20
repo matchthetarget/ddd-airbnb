@@ -21,6 +21,9 @@ class Room < ApplicationRecord
   end
   # Direct associations
 
+  has_many   :messages,
+             dependent: :destroy
+
   has_many   :likes,
              dependent: :destroy
 

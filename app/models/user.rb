@@ -25,6 +25,14 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :senders,
+             through: :recieved_messages,
+             source: :sender
+
+  has_many   :recipients,
+             through: :sent_messages,
+             source: :recipient
+
   has_many   :stayed_rooms,
              through: :stays,
              source: :room

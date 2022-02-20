@@ -1,6 +1,8 @@
 class Message < ApplicationRecord
   # Direct associations
 
+  belongs_to :room
+
   belongs_to :recipient,
              class_name: "User"
 
