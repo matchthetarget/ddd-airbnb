@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
 
   def index
     @q = Message.ransack(params[:q])
-    @messages = @q.result(distinct: true).includes(:sender,
-                                                   :recipient).page(params[:page]).per(10)
+    @messages = @q.result(distinct: true).includes(:sender, :recipient,
+                                                   :room).page(params[:page]).per(10)
   end
 
   def show; end
@@ -55,6 +55,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:sender_id, :recipient_id, :body)
+    params.require(:message).permit(:sender_id, :recipient_id, :body,
+                                    :room_id)
   end
 end

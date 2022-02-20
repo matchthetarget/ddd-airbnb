@@ -12,6 +12,8 @@ class RoomResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :messages
+
   has_many   :likes
 
   has_many   :photos

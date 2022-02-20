@@ -13,5 +13,11 @@
     <%= f.text_area :body, rows: "3", class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :room_id %>
+
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
   <%= f.submit "Create message", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

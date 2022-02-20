@@ -67,5 +67,27 @@
       <% end %>
     <% end %>
   </div>
+  <div class="form-group">
+    <% room_class = "form-control" %>
+    <% room_was_invalid = message.errors.include?(:room) %>
+
+    <% if was_validated %>
+      <% if room_was_invalid %>
+        <% room_class << " is-invalid" %>
+      <% else %>
+        <% room_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :room_id %>
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+    <% if room_was_invalid %>
+      <% message.errors.full_messages_for(:room).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

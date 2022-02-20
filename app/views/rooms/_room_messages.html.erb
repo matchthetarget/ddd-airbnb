@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Messages
+
+    <a data-toggle="collapse" href="#room_messages_new_form">
+      Add message
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @room.messages.each do |message| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <%= link_to message, message %>
+
+        <%= link_to message, method: :delete, data: { confirm: "Do you really want to delete this message" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="room_messages_new_form">
+        <%= render partial: "rooms/room_messages_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

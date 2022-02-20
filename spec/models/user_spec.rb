@@ -14,6 +14,10 @@ RSpec.describe User, type: :model do
   end
 
   describe "InDirect Associations" do
+    it { should have_many(:senders) }
+
+    it { should have_many(:recipients) }
+
     it { should have_many(:stayed_rooms) }
 
     it { should have_many(:liked_rooms) }

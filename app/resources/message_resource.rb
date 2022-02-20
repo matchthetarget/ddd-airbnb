@@ -5,8 +5,11 @@ class MessageResource < ApplicationResource
   attribute :sender_id, :integer
   attribute :recipient_id, :integer
   attribute :body, :string
+  attribute :room_id, :integer
 
   # Direct associations
+
+  belongs_to :room
 
   belongs_to :recipient,
              resource: UserResource
