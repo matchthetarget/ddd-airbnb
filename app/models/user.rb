@@ -33,6 +33,8 @@ class User < ApplicationRecord
              through: :likes,
              source: :room
 
+has_many(:recipients, through: :sent_messages, source: :recipient)
+  has_many(:senders, through: :recieved_messages, source: :sender)
   # Validations
 
   validates :name, presence: true
