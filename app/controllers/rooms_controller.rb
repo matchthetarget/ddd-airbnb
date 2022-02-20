@@ -14,6 +14,14 @@ class RoomsController < ApplicationController
     end
   end
 
+  def likes
+    @rooms = current_user.liked_rooms.page(params[:page]).per(10)
+    @location_hash = Gmaps4rails.build_markers(@rooms.where.not(address_latitude: nil)) do |room, marker|
+      marker.lat room.address_latitude
+      marker.lng room.address_longitude
+    end
+  end
+
   def show
     @like = Like.new
     @photo = Photo.new

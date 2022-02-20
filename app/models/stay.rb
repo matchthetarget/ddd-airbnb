@@ -17,6 +17,6 @@ class Stay < ApplicationRecord
   # Scopes
 
   def to_s
-    check_in
+    "Stay from #{check_in} to #{check_out}"
   end
 end
