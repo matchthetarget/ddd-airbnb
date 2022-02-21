@@ -21,7 +21,7 @@ class InteractionsController < ApplicationController
     @interaction = Interaction.new(interaction_params)
 
     if @interaction.save
-      message = "Interaction was successfully created."
+      message = "Message was successfully created."
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
         # redirect_back fallback_location: request.referer, notice: message
         redirect_to interactions_url, notice: message
