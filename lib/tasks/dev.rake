@@ -1,6 +1,12 @@
 namespace :dev do
   desc "Pre-populate database with dummy data"
   task prime: :environment do
+    if Rails.env.production?
+      ActiveRecord::Base.connection.tables.each do |t|
+        ActiveRecord::Base.connection.reset_pk_sequence!(t)
+      end
+    end
+    
     User.destroy_all
     users = [
       { id: 1, email: "alice@example.com", name: "Alice Smith", created_at: 1.day.ago, updated_at: 1.day.ago},
