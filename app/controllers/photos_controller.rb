@@ -22,13 +22,13 @@ class PhotosController < ApplicationController
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
         redirect_back fallback_location: request.referer, notice: message
       else
-        redirect_to @photo, notice: message
+        redirect_to @photo.room, notice: message
       end
     else
       render :new
     end
   end
-
+  
   def update
     if @photo.update(photo_params)
       redirect_to @photo, notice: "Photo was successfully updated."
@@ -36,14 +36,16 @@ class PhotosController < ApplicationController
       render :edit
     end
   end
-
+  
   def destroy
     @photo.destroy
     message = "Photo was successfully deleted."
     if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referer, notice: message
+      # redirect_back fallback_location: request.referer, notice: message
+      redirect_to @photo.room, notice: message
     else
-      redirect_to photos_url, notice: message
+      redirect_to @photo.room, notice: message
+      # redirect_to photos_url, notice: message
     end
   end
 

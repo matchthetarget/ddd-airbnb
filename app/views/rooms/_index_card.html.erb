@@ -17,6 +17,14 @@
           <%= room.cost_per_night.to_s(:currency) %> / night
         </span>
       </p>
+      <div>
+        <% like = Like.find_by(room: room, user: current_user) %>
+        <% if like.present? %>
+          <i class="fas fa-heart"></i>
+        <% else %>
+          <i class="far fa-heart"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 

@@ -4,9 +4,9 @@ class CreateRooms < ActiveRecord::Migration[6.0]
       t.integer :host_id
       t.integer :number_of_bedrooms
       t.string :name
-      t.string :description
+      t.text :description
       t.float :cost_per_night
-      t.string :number_of_bathrooms
+      t.integer :number_of_bathrooms
       t.string :address
 
       t.timestamps

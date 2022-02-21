@@ -59,7 +59,7 @@
     <% end %>
 
     <%= f.label :description %>
-    <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
+    <%= f.text_area :description, class: description_class, placeholder: "Enter description" %>
     <% if description_was_invalid %>
       <% room.errors.full_messages_for(:description).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -103,7 +103,7 @@
     <% end %>
 
     <%= f.label :number_of_bathrooms %>
-    <%= f.text_field :number_of_bathrooms, class: number_of_bathroom_class, placeholder: "Enter number of bathroom" %>
+    <%= f.number_field :number_of_bathrooms, class: number_of_bathroom_class, placeholder: "Enter number of bathroom" %>
     <% if number_of_bathroom_was_invalid %>
       <% room.errors.full_messages_for(:number_of_bathroom).each do |message| %>
         <div class="invalid-feedback d-flex">

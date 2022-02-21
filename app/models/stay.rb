@@ -17,6 +17,6 @@ class Stay < ApplicationRecord
   # Scopes
 
   def to_s
-    "Stay from #{check_in} to #{check_out}"
+    "Trip at #{room.name} from #{check_in.strftime("%b %d, %Y")} to #{check_out.strftime("%b %d, %Y")}"
   end
 end

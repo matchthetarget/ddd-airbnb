@@ -1,12 +1,14 @@
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
     <div class="card">
+      <% @room = Room.find(params[:room_id])%>
       <h2 class="card-header h4">
-        New Photo
+        Add photo for <%= @room.name %>
       </h2>
 
       <div class="card-body">
-        <%= render "form", photo: @photo %>
+        <%#= render "form", photo: @photo %>
+        <%= render "rooms/room_photos_new_form", photo: @photo %>
 
         <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-chevron-left fa-fw"></i>

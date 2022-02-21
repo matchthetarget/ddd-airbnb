@@ -68,10 +68,10 @@ namespace :dev do
 
     Message.destroy_all
     messages = [
-      { id: 1, sender_id: 5, recipient_id: 2, body: "Hi, could use some help :)",created_at: 1.day.ago, updated_at: 1.day.ago},
-      { id: 2, sender_id: 4, recipient_id: 2, body: "Real cool digs bruv.",created_at: 1.day.ago, updated_at: 1.day.ago},
-      { id: 3, sender_id: 2, recipient_id: 4, body: "Thanks!",created_at: 1.day.ago, updated_at: 1.day.ago},
-      # { id: , sender_id:, recipient_id:, body: ,created_at: 1.day.ago, updated_at: 1.day.ago},
+      { id: 1, sender_id: 5, recipient_id: 2, room_id: 1, body: "Hi, could use some help :)",created_at: 1.day.ago, updated_at: 1.day.ago},
+      { id: 2, sender_id: 4, recipient_id: 2, room_id: 1, body: "Real cool digs bruv.",created_at: 1.day.ago, updated_at: 1.day.ago},
+      { id: 3, sender_id: 2, recipient_id: 4, room_id: 1, body: "Thanks!",created_at: 1.day.ago, updated_at: 1.day.ago},
+      # { id: , sender_id:, recipient_id:, room_id: , body: ,created_at: 1.day.ago, updated_at: 1.day.ago},
     ]
     Message.insert_all!(messages)
   end

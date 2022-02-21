@@ -11,6 +11,8 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    rid = params[:room_id]
+    @room = Room.find(rid)
   end
 
   def edit; end
@@ -21,9 +23,11 @@ class MessagesController < ApplicationController
     if @message.save
       message = "Message was successfully created."
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referer, notice: message
+        # redirect_back fallback_location: request.referer, notice: message
+        redirect_to messages_url, notice: message
       else
-        redirect_to @message, notice: message
+        # redirect_to @message, notice:  message
+        redirect_to messages_url, notice: message
       end
     else
       render :new
@@ -42,7 +46,8 @@ class MessagesController < ApplicationController
     @message.destroy
     message = "Message was successfully deleted."
     if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referer, notice: message
+      # redirect_back fallback_location: request.referer, notice: message
+      redirect_to messages_url, notice: message
     else
       redirect_to messages_url, notice: message
     end

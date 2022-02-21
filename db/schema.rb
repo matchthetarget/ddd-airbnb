@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_19_215158) do
+ActiveRecord::Schema.define(version: 2022_02_20_150038) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 2022_02_19_215158) do
     t.integer "sender_id", null: false
     t.integer "recipient_id", null: false
     t.text "body"
+    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_messages_on_recipient_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 2022_02_19_215158) do
 
   add_foreign_key "likes", "rooms"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users", column: "recipient_id"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "photos", "rooms"
