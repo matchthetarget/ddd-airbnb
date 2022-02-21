@@ -1,12 +1,17 @@
 <%= form_with(model: @line, local: true) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :user_id %>
+  <%= f.hidden_field :user_id, current_user.id %>
 
-    <%= f.collection_select :user_id, User.all, :id, :to_s, {}, class: "form-control" %>
-  </div>
+  <%= f.hidden_field :room_id, value: @room.id %>
 
-  <%= f.hidden_field :location_id, value: @room.id %>
-
-  <%= f.submit "Create line", class: "btn btn-block btn-outline-secondary" %>
+  <%= f.submit '<i class="far fa-heart"></i>'.html_safe, class: "" %>
 <% end %>
+          <%= form_with(model: Line.new, local: true) do |f| %>
+
+            <%= f.hidden_field :user_id, value: current_user.id %>
+
+            <%= f.hidden_field :room_id, value: room.id %>
+            <% icon_class = room.users.include?(current_user) ? "fas" : "far"%>
+            <%#  icon = "<i class=\"<#{icon_class} fa-heart\"></i>" %>
+            <%= f.button "<i class=\"#{icon_class} fa-heart\"></i>".html_safe, class: "btn btn-link" %>
+          <% end %>

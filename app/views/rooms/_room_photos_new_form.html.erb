@@ -3,7 +3,7 @@
   <%= f.hidden_field :room_id, value: @room.id %>
 
   <div class="form-group">
-    <%= f.label :url %>
+    <%= f.label :url, class: "sr-only" %>
 
     <%= f.file_field :url, class: "form-control" %>
   </div>

@@ -1,42 +1,128 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1 class="display-4">
-      Interactions
-
-      <%= link_to new_interaction_path, class: "btn btn-lg btn-outline-secondary" do %>
-        <i class="fas fa-plus fa-fw"></i>
-      <% end %>
+      Messages
     </h1>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-3">
-    <%= render partial: "interactions/interactions_search_form" %>
-  </div>
-</div>
-
-
-
-
+<% @user = current_user %>
+<% messaged_rooms = @user.interactions_a.or(@user.interactions_b).order(:id).pluck(:room_id).uniq%>
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
-    <div class="card">
-      <h1 class="card-header h4 d-flex align-items-center justify-content-between">
-        Interactions
+    <% Room.where(id: messaged_rooms).each do |room| %>
+      <% messaged_users_ids = @user.interactions_a.where(room: room).pluck(:recipient_id) + @user.interactions_b.where(room: room).pluck(:sender_id) %>
 
-        <%= link_to new_interaction_path, class: "btn btn-sm btn-outline-secondary" do %>
-          <i class="fas fa-plus fa-fw"></i>
+      <% User.where(id: messaged_users_ids).each do |messager| %>
+        <%= link_to room, class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
+          <div class="row">
+            <div class="col-4">
+              <%= cl_image_tag room.photos.first&.url, class: "img-fluid" %>
+            </div>
+            <div class="col-8">
+              <h3><%= room.name %></h3>
+              
+              <p class="d-flex justify-content-between">
+                <%= messager %>
+              </p>
+            </div>
+          </div>
         <% end %>
-      </h1>
+<style>
+  /* Chat containers */
+  .message-container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
 
-      <div class="list-group list-group-flush">
-        <%= render collection: @interactions, partial: "list_item", as: :interaction %>
-      </div>
-      <div class="card-footer d-flex justify-content-center">
-        <%= paginate @interactions, theme: 'twitter-bootstrap-4' %>
-      </div>
+  /* Darker chat container */
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
 
-    </div>
+  /* Clear floats */
+  .message-container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Style images */
+  .message-container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+
+  /* Style the right image */
+  .message-container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }
+</style>
+        <ul class="list-group list-group-flush">
+          <% @user.interactions_a.where(room: room, recipient: messager).or(@user.interactions_b.where(room: room, sender: messager)).order(:id).each do |message| %>
+            <li class="list-group-item">
+              <% side = message.sender == current_user ? "right" : "left"%>
+              <div class="message-container <%= "darker" if side == "right"%>">
+                <img src="https://images.fandango.com/cms/assets/a2f0b9d0-cf84-11eb-a507-3be98bb99253--actordefaulttmb.gif" alt="Avatar" class="<%= "right" if side == "right"%>">
+                <p><%= message.body %></p>
+                <span class="time-<%= side %>"><%= message.created_at.strftime("%l:%M %p %Z") %></span>
+              </div>
+            </li>
+          <% end %>
+          <li class="list-group-item">
+            <%= form_with(model: Interaction.new, local: true, novalidate: true, class: "mb-3") do |f| %>
+
+              <%= f.hidden_field :sender_id, value: current_user.id %>
+              <%= f.hidden_field :room_id, value: room.id %>
+              <%= f.hidden_field :recipient_id, value: messager.id %>
+              <div class="form-group">
+                <% body_class = "form-control" %>
+                <% body_was_invalid = Interaction.new.errors.include?(:body) %>
+
+                <% if false %>
+                  <% if body_was_invalid %>
+                    <% body_class << " is-invalid" %>
+                  <% else %>
+                    <% body_class << " is-valid" %>
+                  <% end %>
+                <% end %>
+
+                <%= f.label :body, class: "sr-only" %>
+                <%= f.text_area :body, class: body_class, placeholder: "Respond to #{messager.name}" %>
+                <% if body_was_invalid %>
+                  <% message.errors.full_messages_for(:body).each do |message| %>
+                    <div class="invalid-feedback d-flex">
+                      <%= message %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <%= f.button "Send message", class: "btn btn-outline-secondary btn-block" %>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
   </div>
 </div>

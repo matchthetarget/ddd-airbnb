@@ -11,6 +11,8 @@ class InteractionsController < ApplicationController
 
   def new
     @interaction = Interaction.new
+    rid = params[:room_id]
+    @room = Room.find(rid)
   end
 
   def edit; end
@@ -21,9 +23,11 @@ class InteractionsController < ApplicationController
     if @interaction.save
       message = "Interaction was successfully created."
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referer, notice: message
+        # redirect_back fallback_location: request.referer, notice: message
+        redirect_to interactions_url, notice: message
       else
-        redirect_to @interaction, notice: message
+        # redirect_to @interaction, notice: message
+        redirect_to interactions_url, notice: message
       end
     else
       render :new

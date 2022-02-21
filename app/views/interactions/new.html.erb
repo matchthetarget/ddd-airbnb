@@ -2,11 +2,12 @@
   <div class="col-md-8">
     <div class="card">
       <h2 class="card-header h4">
-        New Interaction
+        Contact host about <%= @room.name %>
       </h2>
 
       <div class="card-body">
-        <%= render "form", interaction: @interaction %>
+        <%#= render "form", message: @message %>
+        <%= render "users/user_interactions_a_new_form", interaction: @interaction %>
 
         <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-chevron-left fa-fw"></i>

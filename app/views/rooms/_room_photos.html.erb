@@ -10,8 +10,9 @@
   <ul class="list-group list-group-flush">
     <% @room.photos.each do |photo| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <%= link_to photo, photo %>
-
+        <% link_to photo do %>
+        <% end %>
+          <%= cl_image_tag photo.url, class: "img-fluid" %>
         <%= link_to photo, method: :delete, data: { confirm: "Do you really want to delete this photo" } do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>

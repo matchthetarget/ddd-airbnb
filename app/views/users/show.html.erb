@@ -1,59 +1,143 @@
+<h1 class="text-center"><%= @user.name %></h1>
+
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
-    <%= render object: @user, partial: "card", as: :user %>
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        Rooms
+
+        <a data-toggle="collapse" href="#user_rooms_new_form">
+          Add room
+        </a>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <% @user.rooms.each do |room| %>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <%= link_to room, room %>
+
+          </li>
+        <% end %>
+
+        <div class="card-footer">
+          <div class="collapse" id="user_rooms_new_form">
+            <%= render partial: "users/user_rooms_new_form" %>
+          </div>
+        </div>
+
+      </ul>
+    </div>
+
   </div>
 </div>
 
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
-    <%= render partial: "users/user_rooms" %>
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        Past Trips
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <% @user.user_rooms.where(approved: true, check_out: ..Date.current).each do |stay| %>
+          <%= link_to stay.room, class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
+            <div class="row">
+              <div class="col-4">
+                <%= cl_image_tag stay.room.photos.first&.url, class: "img-fluid" %>
+              </div>
+              <div class="col-8">
+                <%= stay %>
+              </div>
+            </div>
+          <% end %>
+
+        <% end %>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        Upcoming Trips
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <% @user.user_rooms.where(approved: true, check_out: Date.current..).each do |stay| %>
+          <%= link_to stay.room, class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
+            <div class="row">
+              <div class="col-4">
+                <%= cl_image_tag stay.room.photos.first&.url, class: "img-fluid" %>
+              </div>
+              <div class="col-8">
+                <%= stay %>
+              </div>
+            </div>
+          <% end %>
+
+        <% end %>
+      </ul>
+    </div>
+
   </div>
 </div>
 
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
-    <%= render partial: "users/user_user_rooms" %>
+    <%#= render partial: "users/user_sent_messages" %>
+    <% if @user.user_rooms.where(approved: nil).present? %>
+    <div>
+      <h4>These trip reservations are pending approval</h4>
+      <% @user.user_rooms.where(approved: nil).each do |stay| %>
+        <%= link_to stay.room, class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
+          <div class="row">
+            <div class="col-4">
+              <%= cl_image_tag stay.room.photos.first&.url, class: "img-fluid" %>
+            </div>
+            <div class="col-8">
+              <%= stay %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>
 
 <div class="row justify-content-center mb-3">
   <div class="col-md-8">
-    <%= render partial: "users/user_lines" %>
-  </div>
-</div>
+    <%#= render partial: "users/user_sent_messages" %>
+    <% @user.rooms.each do |room| %>
+      <div>
+      <% if room.user_rooms.where(approved: nil).present? %>
+       <h4>Trip requested for <%= room.name %></h4>
+      <div>
+        <% room.user_rooms.where(approved: nil).each do |stay| %>
+        <p>
+          <div class="list-group-item disabled d-flex align-items-center justify-content-between">
+            <div class="row">
+              <div class="col-4">
+                <%= cl_image_tag stay.room.photos.first&.url, class: "img-fluid" %>
+              </div>
+              <div class="col-8">
+                <%= stay %>
+                <div class="mt-5 d-flex">
+                  <%= form_with(model: stay, local: true) do |f| %>
+                    <%= f.hidden_field :approved, value: "true" %>
+                    <%= f.submit "Approve", class: "btn btn-block btn-outline-success" %>
+                  <% end %>
+                  <%= form_with(model: stay, local: true) do |f| %>
+                    <%= f.hidden_field :approved, value: "false" %>
+                    <%= f.submit "Reject", class: "btn btn-block btn-outline-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_interactions_a" %>
-  </div>
-</div>
-
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_interactions_b" %>
-  </div>
-</div>
-
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_locations" %>
-  </div>
-</div>
-
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_user_user_rooms" %>
-  </div>
-</div>
-
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_recipients" %>
-  </div>
-</div>
-
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render partial: "users/user_senders" %>
+        </p>
+        <% end %>
+      </div>
+      <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       resources :user_rooms
 
       resources :rooms
-
       resources :users
     end
     mount VandalUi::Engine, at: "/vandal"
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
   resources :interactions
   resources :photos
   resources :user_rooms
+  get "liked_rooms" => "rooms#likes"
   resources :rooms
   devise_for :users
   resources :users

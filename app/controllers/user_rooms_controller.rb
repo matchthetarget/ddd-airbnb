@@ -19,7 +19,7 @@ class UserRoomsController < ApplicationController
     @user_room = UserRoom.new(user_room_params)
 
     if @user_room.save
-      message = "UserRoom was successfully created."
+      message = "Your trip is pending approval."
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
         redirect_back fallback_location: request.referer, notice: message
       else
@@ -29,10 +29,11 @@ class UserRoomsController < ApplicationController
       render :new
     end
   end
-
+  
   def update
     if @user_room.update(user_room_params)
-      redirect_to @user_room, notice: "User room was successfully updated."
+      redirect_back fallback_location: request.referer, notice: "User room was successfully updated."
+      # redirect_to @user_room, notice: "User room was successfully updated."
     else
       render :edit
     end
@@ -40,7 +41,7 @@ class UserRoomsController < ApplicationController
 
   def destroy
     @user_room.destroy
-    message = "UserRoom was successfully deleted."
+    message = "Trip was successfully deleted."
     if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
       redirect_back fallback_location: request.referer, notice: message
     else

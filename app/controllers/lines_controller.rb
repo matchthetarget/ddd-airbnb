@@ -19,7 +19,7 @@ class LinesController < ApplicationController
     @line = Line.new(line_params)
 
     if @line.save
-      message = "Line was successfully created."
+      message = "Like was successfully created."
       if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
         redirect_back fallback_location: request.referer, notice: message
       else
@@ -40,7 +40,7 @@ class LinesController < ApplicationController
 
   def destroy
     @line.destroy
-    message = "Line was successfully deleted."
+    message = "Room was unliked."
     if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
       redirect_back fallback_location: request.referer, notice: message
     else

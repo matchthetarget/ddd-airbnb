@@ -17,6 +17,6 @@ class UserRoom < ApplicationRecord
   # Scopes
 
   def to_s
-    check_in
+    "Trip at #{room.name} from #{check_in.strftime("%b %d, %Y")} to #{check_out.strftime("%b %d, %Y")}"
   end
 end

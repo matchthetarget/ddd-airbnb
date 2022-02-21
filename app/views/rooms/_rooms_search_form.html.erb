@@ -2,60 +2,34 @@
   <p class="lead">Narrow results:</p>
 
   <div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :number_of_bathrooms_cont, "Number of bathrooms contains" %>
-    <%= f.text_field :number_of_bathrooms_cont, :class => "form-control", :placeholder => "Number of bathrooms contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :cost_per_night, "Cost per night" %>
     <div class="row">
       <div class='col-md-6 mb-1'>
-        <%= f.text_field :cost_per_night_gteq, :class => "form-control", :placeholder => "Cost per night greater than or equal to" %>
-      </div>
-      <div class='col-md-6'>
-        <%= f.text_field :cost_per_night_lteq, :class => "form-control", :placeholder => "Cost per night less than or equal to" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :description_cont, "Description contains" %>
-    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :number_of_bedrooms, "Number of bedrooms" %>
-    <div class="row">
-      <div class='col-md-6 mb-1'>
+        <%= f.label :number_of_bedrooms, "Number of bedrooms" %>
         <%= f.text_field :number_of_bedrooms_gteq, :class => "form-control", :placeholder => "Number of bedrooms greater than or equal to" %>
       </div>
       <div class='col-md-6'>
-        <%= f.text_field :number_of_bedrooms_lteq, :class => "form-control", :placeholder => "Number of bedrooms less than or equal to" %>
+      <%= f.label :number_of_bathrooms, "Number of bathrooms" %>
+        <%= f.text_field :number_of_bathrooms_gteq, :class => "form-control", :placeholder => "Number of bathrooms greater than or equal to" %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :created_at, "Created at" %>
+    <%= f.label :check_in, "Stay Check in" %>
     <div class="row">
       <div class='col-md-6 mb-1'>
-        <div class='input-group date' id='created_atgteqPicker' data-target-input="nearest">
-          <%= f.text_field :created_at_gteq, :class => "form-control datetimepicker-input", :placeholder => "Created at greater than or equal to", :data => {:target => '#created_atgteqPicker'} %>
-          <div class="input-group-append" data-target='#created_atgteqPicker' data-toggle="datetimepicker">
+        <div class='input-group date' id='staysgteqcheck_inPicker' data-target-input="nearest">
+          <%= f.text_field :user_rooms_check_in_gteq, :class => "form-control datetimepicker-input", :placeholder => "Stay Check in greater than or equal to", :data => {:target => '#staysgteqcheck_inPicker'} %>
+          <div class="input-group-append" data-target='#staysgteqcheck_inPicker' data-toggle="datetimepicker">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
         </div>
       </div>
 
       <div class='col-md-6'>
-        <div class='input-group date' id='created_atlteqPicker' data-target-input="nearest">
-          <%= f.text_field :created_at_lteq, :class => "form-control datetimepicker-input", :placeholder => "Created at less than or equal to", :data => {:target => '#created_atlteqPicker'} %>
-          <div class="input-group-append" data-target='#created_atlteqPicker' data-toggle="datetimepicker">
+        <div class='input-group date' id='stayslteqcheck_inPicker' data-target-input="nearest">
+          <%= f.text_field :user_rooms_check_in_lteq, :class => "form-control datetimepicker-input", :placeholder => "Stay Check in less than or equal to", :data => {:target => '#stayslteqcheck_inPicker'} %>
+          <div class="input-group-append" data-target='#stayslteqcheck_inPicker' data-toggle="datetimepicker">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
         </div>
@@ -64,83 +38,21 @@
   </div>
   <script type="text/javascript">
       $(function () {
-          $('#created_atgteqPicker').datetimepicker({
-              format: 'YYYY-MM-DD hh:mm:SS'
-          });
-          $('#created_atlteqPicker').datetimepicker({
-              useCurrent: false,
-              format: 'YYYY-MM-DD hh:mm:SS'
-          });
-          $('#created_atgteqPicker').on("dp.change", function (e) {
-              $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-          });
-          $('#created_atlteqPicker').on("dp.change", function (e) {
-              $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-          });
-      });
-  </script>
-
-
-  <div class="form-group">
-    <%= f.label :host_name_cont, "Host name contains" %>
-    <%= f.text_field :host_name_cont, :class => "form-control", :placeholder => "Host name contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :check_in, "UserRoom Check in" %>
-    <div class="row">
-      <div class='col-md-6 mb-1'>
-        <div class='input-group date' id='user_roomsgteqcheck_inPicker' data-target-input="nearest">
-          <%= f.text_field :user_rooms_check_in_gteq, :class => "form-control datetimepicker-input", :placeholder => "UserRoom Check in greater than or equal to", :data => {:target => '#user_roomsgteqcheck_inPicker'} %>
-          <div class="input-group-append" data-target='#user_roomsgteqcheck_inPicker' data-toggle="datetimepicker">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <div class='col-md-6'>
-        <div class='input-group date' id='user_roomslteqcheck_inPicker' data-target-input="nearest">
-          <%= f.text_field :user_rooms_check_in_lteq, :class => "form-control datetimepicker-input", :placeholder => "UserRoom Check in less than or equal to", :data => {:target => '#user_roomslteqcheck_inPicker'} %>
-          <div class="input-group-append" data-target='#user_roomslteqcheck_inPicker' data-toggle="datetimepicker">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript">
-      $(function () {
-          $('#user_roomsgteqcheck_inPicker').datetimepicker({
+          $('#staysgteqcheck_inPicker').datetimepicker({
               format: 'MM/DD/YYYY'
           });
-          $('#user_roomslteqcheck_inPicker').datetimepicker({
+          $('#stayslteqcheck_inPicker').datetimepicker({
               useCurrent: false,
               format: 'MM/DD/YYYY'
           });
-          $('#user_roomsgteqcheck_inPicker').on("dp.change", function (e) {
-              $('#user_roomslteqcheck_inPicker').data("DateTimePicker").minDate(e.date);
+          $('#staysgteqcheck_inPicker').on("dp.change", function (e) {
+              $('#stayslteqcheck_inPicker').data("DateTimePicker").minDate(e.date);
           });
-          $('#user_roomslteqcheck_inPicker').on("dp.change", function (e) {
-              $('#user_roomsgteqcheck_inPicker').data("DateTimePicker").maxDate(e.date);
+          $('#stayslteqcheck_inPicker').on("dp.change", function (e) {
+              $('#staysgteqcheck_inPicker').data("DateTimePicker").maxDate(e.date);
           });
       });
   </script>
-
-  <div class="form-group">
-    <%= f.label :interactions_body_cont, "Interactions body contains" %>
-    <%= f.text_field :interactions_body_cont, :class => "form-control", :placeholder => "Interactions body contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :users_name_cont, "Users name contains" %>
-    <%= f.text_field :users_name_cont, :class => "form-control", :placeholder => "Users name contains" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :guests_name_cont, "Guests name contains" %>
-    <%= f.text_field :guests_name_cont, :class => "form-control", :placeholder => "Guests name contains" %>
-  </div>
-
 
   <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
