@@ -8,17 +8,17 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :likes
-
-  has_many   :recieved_messages,
-             resource: MessageResource,
+  has_many   :interactions_b,
+             resource: InteractionResource,
              foreign_key: :recipient_id
 
-  has_many   :sent_messages,
-             resource: MessageResource,
+  has_many   :interactions_a,
+             resource: InteractionResource,
              foreign_key: :sender_id
 
-  has_many   :stays,
+  has_many   :lines
+
+  has_many   :user_rooms,
              foreign_key: :guest_id
 
   has_many   :rooms,
@@ -42,21 +42,21 @@ class UserResource < ApplicationResource
     end
   end
 
-  many_to_many :stayed_rooms,
+  many_to_many :user_user_rooms,
                resource: RoomResource
 
-  many_to_many :liked_rooms,
+  many_to_many :locations,
                resource: RoomResource
 
   filter :sender_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:senders).where(messages: { sender_id: value })
+      scope.eager_load(:senders).where(interactions: { sender_id: value })
     end
   end
 
   filter :recipient_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:recipients).where(messages: { recipient_id: value })
+      scope.eager_load(:recipients).where(interactions: { recipient_id: value })
     end
   end
 end

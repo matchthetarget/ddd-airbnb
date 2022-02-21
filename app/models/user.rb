@@ -2,20 +2,20 @@ class User < ApplicationRecord
   include JwtToken
   # Direct associations
 
-  has_many   :likes,
-             dependent: :destroy
-
-  has_many   :recieved_messages,
-             class_name: "Message",
+  has_many   :interactions_b,
+             class_name: "Interaction",
              foreign_key: "recipient_id",
              dependent: :destroy
 
-  has_many   :sent_messages,
-             class_name: "Message",
+  has_many   :interactions_a,
+             class_name: "Interaction",
              foreign_key: "sender_id",
              dependent: :destroy
 
-  has_many   :stays,
+  has_many   :lines,
+             dependent: :destroy
+
+  has_many   :user_rooms,
              foreign_key: "guest_id",
              dependent: :destroy
 
@@ -26,23 +26,21 @@ class User < ApplicationRecord
   # Indirect associations
 
   has_many   :senders,
-             through: :recieved_messages,
+             through: :interactions_b,
              source: :sender
 
   has_many   :recipients,
-             through: :sent_messages,
+             through: :interactions_a,
              source: :recipient
 
-  has_many   :stayed_rooms,
-             through: :stays,
+  has_many   :user_user_rooms,
+             through: :user_rooms,
              source: :room
 
-  has_many   :liked_rooms,
-             through: :likes,
-             source: :room
+  has_many   :locations,
+             through: :lines,
+             source: :location
 
-has_many(:recipients, through: :sent_messages, source: :recipient)
-  has_many(:senders, through: :recieved_messages, source: :sender)
   # Validations
 
   validates :name, presence: true

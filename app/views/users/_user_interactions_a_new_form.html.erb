@@ -1,0 +1,23 @@
+<%= form_with(model: @interaction, local: true) do |f| %>
+
+  <%= f.hidden_field :sender_id, value: @user.id %>
+
+  <div class="form-group">
+    <%= f.label :recipient_id %>
+
+    <%= f.text_field :recipient_id, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: "3", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :room_id %>
+
+    <%= f.collection_select :room_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Create interaction", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

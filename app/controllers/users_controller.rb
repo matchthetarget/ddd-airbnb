@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @like = Like.new
-    @message = Message.new
-    @stay = Stay.new
+    @interaction = Interaction.new
+    @line = Line.new
+    @user_room = UserRoom.new
     @room = Room.new
   end
 

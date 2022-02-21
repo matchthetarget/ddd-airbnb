@@ -21,16 +21,17 @@ class Room < ApplicationRecord
   end
   # Direct associations
 
-  has_many   :messages,
+  has_many   :interactions,
              dependent: :destroy
 
-  has_many   :likes,
+  has_many   :lines,
+             foreign_key: "location_id",
              dependent: :destroy
 
   has_many   :photos,
              dependent: :destroy
 
-  has_many   :stays,
+  has_many   :user_rooms,
              dependent: :destroy
 
   belongs_to :host,
@@ -39,11 +40,11 @@ class Room < ApplicationRecord
   # Indirect associations
 
   has_many   :guests,
-             through: :stays,
+             through: :user_rooms,
              source: :guest
 
-  has_many   :fans,
-             through: :likes,
+  has_many   :users,
+             through: :lines,
              source: :user
 
   # Validations

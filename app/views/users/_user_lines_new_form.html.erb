@@ -1,0 +1,12 @@
+<%= form_with(model: @line, local: true) do |f| %>
+
+  <%= f.hidden_field :user_id, value: @user.id %>
+
+  <div class="form-group">
+    <%= f.label :location_id %>
+
+    <%= f.collection_select :location_id, Room.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Create line", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

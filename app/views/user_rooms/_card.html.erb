@@ -1,0 +1,55 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    User Room #<%= user_room.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Guest</dt>
+      <dd>
+        <% if @user_room.guest.present? %>
+          <%= link_to user_room.guest, user_room.guest %>
+        <% end %>
+      </dd>
+
+      <dt>Room</dt>
+      <dd>
+        <% if @user_room.room.present? %>
+          <%= link_to user_room.room, user_room.room %>
+        <% end %>
+      </dd>
+
+      <dt>Check in</dt>
+      <dd><%= user_room.check_in %></dd>
+
+      <dt>Check out</dt>
+      <dd><%= user_room.check_out %></dd>
+
+      <dt>Approved</dt>
+      <dd><%= user_room.approved %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back user_room, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_user_room_url(user_room), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to user_room, method: :delete, data: { confirm: "Do you really want to delete this user_room?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(user_room.updated_at) %> ago
+  </div>
+</div>

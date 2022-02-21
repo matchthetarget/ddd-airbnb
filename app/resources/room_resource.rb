@@ -12,13 +12,14 @@ class RoomResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :messages
+  has_many   :interactions
 
-  has_many   :likes
+  has_many   :lines,
+             foreign_key: :location_id
 
   has_many   :photos
 
-  has_many   :stays
+  has_many   :user_rooms
 
   belongs_to :host,
              resource: UserResource
@@ -28,6 +29,5 @@ class RoomResource < ApplicationResource
   many_to_many :guests,
                resource: UserResource
 
-  many_to_many :fans,
-               resource: UserResource
+  many_to_many :users
 end

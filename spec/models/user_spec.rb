@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "Direct Associations" do
-    it { should have_many(:likes) }
+    it { should have_many(:interactions_b) }
 
-    it { should have_many(:recieved_messages) }
+    it { should have_many(:interactions_a) }
 
-    it { should have_many(:sent_messages) }
+    it { should have_many(:lines) }
 
-    it { should have_many(:stays) }
+    it { should have_many(:user_rooms) }
 
     it { should have_many(:rooms) }
   end
@@ -18,9 +18,9 @@ RSpec.describe User, type: :model do
 
     it { should have_many(:recipients) }
 
-    it { should have_many(:stayed_rooms) }
+    it { should have_many(:user_user_rooms) }
 
-    it { should have_many(:liked_rooms) }
+    it { should have_many(:locations) }
   end
 
   describe "Validations" do

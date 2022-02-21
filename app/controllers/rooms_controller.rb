@@ -6,16 +6,8 @@ class RoomsController < ApplicationController
 
   def index
     @q = Room.ransack(params[:q])
-    @rooms = @q.result(distinct: true).includes(:host, :stays, :photos,
-                                                :likes, :messages, :fans, :guests).page(params[:page]).per(10)
-    @location_hash = Gmaps4rails.build_markers(@rooms.where.not(address_latitude: nil)) do |room, marker|
-      marker.lat room.address_latitude
-      marker.lng room.address_longitude
-    end
-  end
-
-  def likes
-    @rooms = current_user.liked_rooms.page(params[:page]).per(10)
+    @rooms = @q.result(distinct: true).includes(:host, :user_rooms, :photos,
+                                                :lines, :interactions, :users, :guests).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@rooms.where.not(address_latitude: nil)) do |room, marker|
       marker.lat room.address_latitude
       marker.lng room.address_longitude
@@ -23,10 +15,10 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @message = Message.new
-    @like = Like.new
+    @interaction = Interaction.new
+    @line = Line.new
     @photo = Photo.new
-    @stay = Stay.new
+    @user_room = UserRoom.new
   end
 
   def new

@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe Room, type: :model do
   describe "Direct Associations" do
-    it { should have_many(:messages) }
+    it { should have_many(:interactions) }
 
-    it { should have_many(:likes) }
+    it { should have_many(:lines) }
 
     it { should have_many(:photos) }
 
-    it { should have_many(:stays) }
+    it { should have_many(:user_rooms) }
 
     it { should belong_to(:host) }
   end
@@ -16,7 +16,7 @@ RSpec.describe Room, type: :model do
   describe "InDirect Associations" do
     it { should have_many(:guests) }
 
-    it { should have_many(:fans) }
+    it { should have_many(:users) }
   end
 
   describe "Validations" do
